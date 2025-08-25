@@ -1,13 +1,16 @@
-import { Schema, model } from "mongoose";
-
-const objectId = Schema.ObjectId;
+import { Schema, model, Types } from "mongoose";
 
 const userSchema = new Schema({
     username: String,
-    email: String,
     password: String,
 });
 
-const userModel = model("users", userSchema);
+const contentSchema = new Schema({
+    title: String,
+    link: String,
+    tags: [{type: Types.ObjectId, ref: 'Tag'}],
+    userid: {type: Types.ObjectId, ref: 'users', required: true }
+})
 
-export { userModel };
+export const userModel = model("users", userSchema);
+export const contentModel = model("content", contentSchema);

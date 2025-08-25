@@ -1,7 +1,6 @@
 import dotenv from "dotenv";
 import type { NextFunction, Request, Response } from "express";
 import jwt from "jsonwebtoken";
-import { decodedTextSpanIntersectsWith } from "typescript";
 
 dotenv.config();
 
@@ -14,7 +13,7 @@ export const middleware = (req: Request, res: Response, next: NextFunction) => {
         
         if (decodedToken) {
             // @ts-ignore
-            req.username = decodedToken.id;
+            req.username = (decodedToken).username;
             next()
         } else {
             res.status(403).json({

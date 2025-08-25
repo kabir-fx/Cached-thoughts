@@ -24,7 +24,6 @@ app.get('/health', (_req, res) => {
         timestamp: new Date().toISOString()
     });
 });
-
 app.use('/api/v1/', userRouter);
 app.use('/api/v1/', contentRouter);
 
